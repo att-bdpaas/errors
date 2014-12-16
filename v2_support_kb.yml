@@ -1,0 +1,871 @@
+1000: |
+  # Invalid Auth Token
+  ## Information
+  * **HTTP Code**: 401
+  * **Error Message**: Invalid Auth Token
+
+  ## Possible Solutions
+  1. Ask the customer to ensure that their credentials are correct.
+  1. Ask the customer to run `cf logout` and `cf login`.
+  1. Ask the customer to rerun the last commands with `CF_TRACE=true` and send you the output.
+  1. Ask the customer to send you the `~/.cf/config.json`. Ensure that the access token, authorization end point, and
+     login end point are correct
+  1. Ensure that the *UAA* and *Login* servers are up.
+
+1001: |
+  # Message Parse Error
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: Request invalid due to parse error: *\<parse error>*
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure both the request and response are valid JSON.
+
+1002: |
+  # Invalid Relation
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: Invalid Relation: *\<relation error>*
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the customer is not running custom `cf curl` commands.
+
+10000: |
+  # Not Found
+  ## Information
+  * **HTTP Code**: 404
+  * **Error Message**: Unknown request
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the trace is not requesting an invalid URL
+  1. Ensure that the *API* server is up.
+  1. Ensure that the customer is not running custom `cf curl` commands.
+
+10001: |
+  # Server Error
+  ## Information
+  * **HTTP Code**: 500
+  * **Error Message**: Server error
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the customer is not running custom `cf curl` commands.
+
+10002: |
+  # Not Authenticated
+  ## Information
+  * **HTTP Code**: 401
+  * **Error Message**: Authentication error
+
+  ## Possible Solutions
+  1. Ask the customer to ensure that their credentials are correct.
+  1. Ask the customer to run `cf logout` and `cf login`.
+  1. Ask the customer to rerun the last commands with `CF_TRACE=true` and send you the output.
+  1. Ensure that the *UAA* and *Login* servers are up.
+
+10003: |
+  # Not Authorized
+  ## Information
+  * **HTTP Code**: 403
+  * **Error Message**: You are not authorized to perform the requested action
+
+  ## Possible Solutions
+  1. Ensure that the customer is allowed to do the request that they want. If not ask them to talk to the Organization
+     or Space manager.
+  1 Ask the customer to ensure that they are in the correct organization and space they have permissions for.
+
+10004: |
+  # Invalid Request
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The request is invalid
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the customer is not running custom `cf curl` commands.
+
+10005: |
+  # Bad Query Parameter
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The query parameter is invalid: *\<invalid query params>*
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the customer is not running custom `cf curl` commands.
+
+10006: |
+  # Association Not Empty
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: Please delete the *\<children resources>* associations for your *\<to be deleted resource>*
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the customer is not running custom `cf curl` commands.
+    1. If they are doing a `cf curl -X DELETE` then the url must have the `?recursive=true` param, and thus
+       deleting non empty organizations or spaces.
+
+10007: |
+  # Insufficient Scope
+  ## Information
+  * **HTTP Code**: 403
+  * **Error Message**: Your token lacks the necessary scopes to access this resource
+  ## Possible Solutions
+  1. Ask the customer to send you the `~/.cf/config.json`.
+  1. Run `ruby -r 'base64' -e "p Base64.decode64 'ACCESS_TOKEN'"` where *ACCESS_TOKEN* is from the config file.
+  1. Ensure that the scope is correct for that user.
+
+10008: |
+  # Unprocessable Entity
+  ## Information
+  * **HTTP Code**: 422
+  * **Error Message**: The request is semantically invalid: *\<request error>*
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the customer is not running custom `cf curl` commands.
+
+#10009: |
+#  # Unable to Perform
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: *\<action*> could not be complete: *\<error message>*
+
+10010: |
+  # Resource Not Found
+  ## Information
+  * **HTTP Code**: 404
+  * **Error Message**: *\<resource>*
+
+  ## Possible Solutions
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+  1. Ensure that the resource exists, e.g. the Organization, Space, App or Service etc exists.
+  1. Ensure that the user has the permissions to access the resoure
+
+#20001: |
+#  # User Invalid
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: The user info is invalid: *\<error message>*
+
+20002: |
+  # UaaIdTaken
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The UAA ID is taken: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the customer is not running custom `cf curl` commands.
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+
+20003: |
+  # User Not Found
+  ## Information
+  * **HTTP Code**: 404
+  * **Error Message**: The user could not be found: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the customer is not running custom `cf curl` commands.
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+
+30001: |
+  # Organization Invalid
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The organization info is invalid: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the customer does not have invalid organization name, i.e. the organization name is too long or has invalid characters.
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+
+30002: |
+  # Organization Name Taken
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The organization name is taken: *\<organization name>*
+
+  ## Possible Solutions
+  1. Ensure that the organization name is not taken
+  1. Ask the customer to run `cf orgs` and choose a name that isn't on the list.
+  1. The customer may not be able to see all the orgs due to user permissions. Therefore, you may have to help them.
+
+30003: |
+  # Organization Not Found
+  ## Information
+  * **HTTP Code**: 404
+  * **Error Message**: The organization could not be found: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the organization exists, e.g. run `cf orgs` to see a list of all the organizations.
+  1. Ensure that the customer has the correct organization name.
+  1. Ensure that the customer has permissions to access the organization.
+
+40001: |
+  # Space Invalid
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The app space info is invalid: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the customer does not have invalid space name, i.e. the space name is too long or has invalid characters.
+  1. Ask the customer to run the command with `CF_TRACE=true` and send you back the output.
+
+40002: |
+  # Space Name Taken
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The app space name is taken: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the space name is not taken
+  1. Ask the customer to run `cf space` inside of their specified organization and choose a name that isn't on the list.
+  1. The customer may not be able to see all the spaces due to user permissions. Therefore, you may have to help them.
+
+40003: |
+  # Space User Not In Org
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The app space and the user are not in the same org: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the customer and the app space is in the correct organization.
+  1. Ensure that the customer has the correct permission to access the app space.
+
+40004: |
+  # Space Not Found
+  ## Information
+  * **HTTP Code**: 404
+  * **Error Message**: The app space could not be found: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the app space exists in the organization, e.g. run `cf spaces` to see a list of all the app spaces.
+  1. Ensure that the customer has the correct app space name.
+  1. Ensure that the customer has permissions to access the space .
+
+#50001: |
+#  # Service Auth Token Invalid
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: The service auth token is invalid: *\<error message>*
+#
+#50002: |
+#  # Service Auth Token Label Taken
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: The service auth token label is taken: *\<error message>*
+#
+#50003: |
+#  # Service Auth Token Not Found
+#  ## Information
+#  * **HTTP Code**: 404
+#  * **Error Message**: The service auth token could not be found: *\<error message>*
+#
+#50004: |
+#  # Missing Service Auth Token
+#  ## Information
+#  * **HTTP Code**: 500
+#  * **Error Message**: Missing service auth token: *\<error message>*
+
+#60001: |
+#  # Service Instance Name Empty
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: The service instance name is required.
+
+60002: |
+  # Service Instance Name Taken
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The service instance name is taken: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure the service instance is not already created in the space, e.g. run `cf services` to see a list of all service instances.
+
+
+60003: |
+  # Service Instance Service Binding Wrong Space
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The service instance and the service binding are in different app spaces: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the customer is not running custom `cf curl` commands.
+  1. Ensure that the customer is in the right space.
+
+#60003: |
+#  # Service Instance Invalid
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: The service instance is invalid: *\<error message>*
+
+60004: |
+  # Service Instance Not Found
+  ## Information
+  * **HTTP Code**: 404
+  * **Error Message**: The service instance could not be found: *\<error message>*
+
+  ## Possible Solutions
+  1. Ensure that the service instance exists, e.g. run `cf services` to see a list of all service instances.
+  1. Ensure that the customer has the correct service instance name.
+  1. Ensure that the customer has permission to access the service instance.
+
+#60005: |
+#  # Service Instance Quota Exceeded
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: You have exceeded your organization's services limit.
+
+#60006:
+#  name: PreviouslyUsedAs_ServiceInstancePaidQuotaExceeded
+#  http_code: 400
+#  message: "You have exceeded your organization's services limit."
+#
+
+60007: |
+  # Service Instance Service Plan Not Allowed
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: The service instance cannot be created because paid service plans are not allowed.
+
+  ## Possible Solutions
+  1. Ensure that the space/organization is allowed to add new paid services
+  1. Run `cf org <organization name>` and see if paid services are allowed.
+
+#60008: |
+#  # Service Instance Duplicate Not Allowed
+#  ## Information
+#  * **HTTP Code**: 400
+#  * **Error Message**: An instance of this service is already present in this space. Some services only support one instance per space.
+
+60009: |
+  # Service Instance Name Too Long
+  ## Information
+  * **HTTP Code**: 400
+  * **Error Message**: You have requested an invalid service instance name. Names are limited to 50 characters.
+
+  ## Possible Solutions
+  1. Ensure that the customer is not trying to create a service instance with a name longer than 50 characters.
+
+#60010:
+#  name: ServiceInstanceOrganizationNotAuthorized
+#  http_code: 403
+#  message: A service instance for the selected plan cannot be created in this organization. The plan is visible because another organization you belong to has access to it.
+#
+#60011:
+#  name: ServiceInstanceDeprovisionFailed
+#  http_code: 409
+#  message: "The service broker reported an error during deprovisioning: %s"
+#
+#60012:
+#  name: ServiceInstanceSpaceQuotaExceeded
+#  http_code: 400
+#  message: "You have exceeded your space's services limit."
+#
+#60013:
+#  name: ServiceInstanceServicePlanNotAllowedBySpaceQuota
+#  http_code: 400
+#  message: "The service instance cannot be created because paid service plans are not allowed for your space."
+#
+#60014:
+#  name: ServiceInstanceSpaceChangeNotAllowed
+#  http_code: 400
+#  message: "Cannot update space for service instance."
+#
+#70001:
+#  name: RuntimeInvalid
+#  http_code: 400
+#  message: "The runtime is invalid: %s"
+#
+#70002:
+#  name: RuntimeNameTaken
+#  http_code: 400
+#  message: "The runtime name is taken: %s"
+#
+#70003:
+#  name: RuntimeNotFound
+#  http_code: 404
+#  message: "The runtime could not be found: %s"
+#
+#80001:
+#  name: FrameworkInvalid
+#  http_code: 400
+#  message: "The framework is invalid: %s"
+#
+#80002:
+#  name: FrameworkNameTaken
+#  http_code: 400
+#  message: "The framework name is taken: %s"
+#
+#80003:
+#  name: FrameworkNotFound
+#  http_code: 404
+#  message: "The framework could not be found: %s"
+#
+#90001:
+#  name: ServiceBindingInvalid
+#  http_code: 400
+#  message: "The service binding is invalid: %s"
+#
+#90002:
+#  name: ServiceBindingDifferentSpaces
+#  http_code: 400
+#  message: "The app and the service are not in the same app space: %s"
+#
+#90003:
+#  name: ServiceBindingAppServiceTaken
+#  http_code: 400
+#  message: "The app space binding to service is taken: %s"
+#
+#90004:
+#  name: ServiceBindingNotFound
+#  http_code: 404
+#  message: "The service binding could not be found: %s"
+#
+#90005:
+#  name: UnbindableService
+#  http_code: 400
+#  message: "The service doesn't support binding."
+#
+#90006:
+#  name: InvalidLoggingServiceBinding
+#  http_code: 502
+#  message: "The service is attempting to stream logs from your application, but is not registered as a logging service. Please contact the service provider."
+#
+#100001:
+#  name: AppInvalid
+#  http_code: 400
+#  message: "The app is invalid: %s"
+#
+#100002:
+#  name: AppNameTaken
+#  http_code: 400
+#  message: "The app name is taken: %s"
+#
+#100004:
+#  name: AppNotFound
+#  http_code: 404
+#  message: "The app name could not be found: %s"
+#
+#100005:
+#  name: AppMemoryQuotaExceeded
+#  http_code: 400
+#  message: "You have exceeded your organization's memory limit."
+#
+#100006:
+#  name: AppMemoryInvalid
+#  http_code: 400
+#  message: "You have specified an invalid amount of memory for your application."
+#
+#100007:
+#  name: QuotaInstanceMemoryLimitExceeded
+#  http_code: 400
+#  message: "You have exceeded the instance memory limit for your organization's quota."
+#
+#110001:
+#  name: ServicePlanInvalid
+#  http_code: 400
+#  message: "The service plan is invalid: %s"
+#
+#110002:
+#  name: ServicePlanNameTaken
+#  http_code: 400
+#  message: "The service plan name is taken: %s"
+#
+#110003:
+#  name: ServicePlanNotFound
+#  http_code: 404
+#  message: "The service plan could not be found: %s"
+#
+#110004:
+#  name: ServicePlanNotUpdateable
+#  http_code: 400
+#  message: "The service does not support changing plans."
+#
+#120001:
+#  name: ServiceInvalid
+#  http_code: 400
+#  message: "The service is invalid: %s"
+#
+#120002:
+#  name: ServiceLabelTaken
+#  http_code: 400
+#  message: "The service label is taken: %s"
+#
+#120003:
+#  name: ServiceNotFound
+#  http_code: 404
+#  message: "The service could not be found: %s"
+#
+#130001:
+#  name: DomainInvalid
+#  http_code: 400
+#  message: "The domain is invalid: %s"
+#
+#130002:
+#  name: DomainNotFound
+#  http_code: 404
+#  message: "The domain could not be found: %s"
+#
+#130003:
+#  name: DomainNameTaken
+#  http_code: 400
+#  message: "The domain name is taken: %s"
+#
+#140001:
+#  name: LegacyApiWithoutDefaultSpace
+#  http_code: 400
+#  message: "A legacy api call requring a default app space was called, but no default app space is set for the user."
+#
+#150001:
+#  name: AppPackageInvalid
+#  http_code: 400
+#  message: "The app package is invalid: %s"
+#
+#150002:
+#  name: AppPackageNotFound
+#  http_code: 404
+#  message: "The app package could not be found: %s"
+#
+#150003:
+#  name: InsufficientRunningResourcesAvailable
+#  http_code: 503
+#  message: "One or more instances could not be started because of insufficient running resources."
+#
+#160001:
+#  name: AppBitsUploadInvalid
+#  http_code: 400
+#  message: "The app upload is invalid: %s"
+#
+#160002:
+#  name: AppBitsCopyInvalid
+#  http_code: 400
+#  message: "The app copy is invalid: %s"
+#
+#170001:
+#  name: StagingError
+#  http_code: 400
+#  message: "Staging error: %s"
+#
+#170002:
+#  name: NotStaged
+#  http_code: 400
+#  message: "App has not finished staging"
+#
+#170003:
+#  name: NoAppDetectedError
+#  http_code: 400
+#  message: "An app was not successfully detected by any available buildpack"
+#
+#170004:
+#  name: BuildpackCompileFailed
+#  http_code: 400
+#  message: "App staging failed in the buildpack compile phase"
+#
+#170005:
+#  name: BuildpackReleaseFailed
+#  http_code: 400
+#  message: "App staging failed in the buildpack release phase"
+#
+#170006:
+#  name: NoBuildpacksFound
+#  http_code: 400
+#  message: "There are no buildpacks available"
+#
+#170007:
+#  name: StagingTimeExpired
+#  http_code: 504
+#  message: "Staging time expired: %s"
+#
+#180001:
+#  name: SnapshotNotFound
+#  http_code: 404
+#  message: "Snapshot could not be found: %s"
+#
+#180002:
+#  name: ServiceGatewayError
+#  http_code: 503
+#  message: "Service gateway internal error: %s"
+#
+#180003:
+#  name: ServiceNotImplemented
+#  http_code: 501
+#  message: "Operation not supported for service"
+#
+#180004:
+#  name: SDSNotAvailable
+#  http_code: 501
+#  message: "No serialization service backends available"
+#
+#190001:
+#  name: FileError
+#  http_code: 400
+#  message: "File error: %s"
+#
+#200001:
+#  name: StatsError
+#  http_code: 400
+#  message: "Stats error: %s"
+#
+#210001:
+#  name: RouteInvalid
+#  http_code: 400
+#  message: "The route is invalid: %s"
+#
+#210002:
+#  name: RouteNotFound
+#  http_code: 404
+#  message: "The route could not be found: %s"
+#
+#210003:
+#  name: RouteHostTaken
+#  http_code: 400
+#  message: "The host is taken: %s"
+#
+#220001:
+#  name: InstancesError
+#  http_code: 400
+#  message: "Instances error: %s"
+#
+#220002:
+#  name: InstancesUnavailable
+#  http_code: 503
+#  message: "Instances information unavailable: %s"
+#
+#230001:
+#  name: BillingEventQueryInvalid
+#  http_code: 400
+#  message: "Billing event query start_date and/or end_date are missing or invalid"
+#
+#230002:
+#  name: EventNotFound
+#  http_code: 404
+#  message: "Event could not be found: %s"
+#
+#240001:
+#  name: QuotaDefinitionNotFound
+#  http_code: 404
+#  message: "Quota Definition could not be found: %s"
+#
+#240002:
+#  name: QuotaDefinitionNameTaken
+#  http_code: 400
+#  message: "Quota Definition is taken: %s"
+#
+#240003:
+#  name: QuotaDefinitionInvalid
+#  http_code: 400
+#  message: "Quota Definition is invalid: %s"
+#
+#240004:
+#  name: QuotaDefinitionMemoryLimitNegative
+#  http_code: 400
+#  message: "Quota Definition memory limit cannot be negative"
+#
+#250001:
+#  name: StackInvalid
+#  http_code: 400
+#  message: "The stack is invalid: %s"
+#
+#250002:
+#  name: StackNameTaken
+#  http_code: 400
+#  message: "The stack name is taken: %s"
+#
+#250003:
+#  name: StackNotFound
+#  http_code: 404
+#  message: "The stack could not be found: %s"
+#
+#260001:
+#  name: ServicePlanVisibilityInvalid
+#  http_code: 400
+#  message: "Service Plan Visibility is invalid: %s"
+#
+#260002:
+#  name: ServicePlanVisibilityAlreadyExists
+#  http_code: 400
+#  message: "This combination of ServicePlan and Organization is already taken: %s"
+#
+#260003:
+#  name: ServicePlanVisibilityNotFound
+#  http_code: 404
+#  message: "The service plan visibility could not be found: %s"
+#
+#270001:
+#  name: ServiceBrokerInvalid
+#  http_code: 400
+#  message: "Service broker is invalid: %s"
+#
+#270002:
+#  name: ServiceBrokerNameTaken
+#  http_code: 400
+#  message: "The service broker name is taken"
+#
+#270003:
+#  name: ServiceBrokerUrlTaken
+#  http_code: 400
+#  message: "The service broker url is taken: %s"
+#
+#270004:
+#  name: ServiceBrokerNotFound
+#  http_code: 404
+#  message: "The service broker was not found: %s"
+#
+#270010:
+#  name: ServiceBrokerNotRemovable
+#  http_code: 400
+#  message: "Can not remove brokers that have associated service instances"
+#
+#270011:
+#  name: ServiceBrokerUrlInvalid
+#  http_code: 400
+#  message: "%s is not a valid URL"
+#
+#270012:
+#  name: ServiceBrokerCatalogInvalid
+#  http_code: 502
+#  message: "Service broker catalog is invalid: %s"
+#
+#270013:
+#  name: ServiceBrokerDashboardClientFailure
+#  http_code: 502
+#  message: "Service broker dashboard clients could not be modified: %s"
+#
+#290001:
+#  name: BuildpackNameTaken
+#  http_code: 400
+#  message: "The buildpack name is already in use: %s"
+#
+#290002:
+#  name: BuildpackBitsUploadInvalid
+#  http_code: 400
+#  message: "The buildpack upload is invalid: %s"
+#
+#290003:
+#  name: BuildpackInvalid
+#  http_code: 400
+#  message: "Buildpack is invalid: %s"
+#
+#290004:
+#  name: CustomBuildpacksDisabled
+#  http_code: 400
+#  message: "Custom buildpacks are disabled"
+#
+#290005:
+#  name: BuildpackLocked
+#  http_code: 409
+#  message: "The buildpack is locked"
+#
+#290006:
+#  name: JobTimeout
+#  http_code: 524
+#  message: "The job execution has timed out."
+#
+#300001:
+#  name: SecurityGroupInvalid
+#  http_code: 400
+#  message: "The security group is invalid: %s"
+#
+#300002:
+#  name: SecurityGroupNotFound
+#  http_code: 404
+#  message: "The security group could not be found: %s"
+#
+#300003:
+#  name: SecurityGroupStagingDefaultInvalid
+#  http_code: 400
+#  message: "The security group could not be found: %s"
+#
+#300004:
+#  name: SecurityGroupRunningDefaultInvalid
+#  http_code: 400
+#  message: "The security group could not be found: %s"
+#
+#300005:
+#  name: SecurityGroupNameTaken
+#  http_code: 400
+#  message: "The security group name is taken: %s"
+#
+#310001:
+#  name: SpaceQuotaDefinitionInvalid
+#  http_code: 400
+#  message: "Space Quota Definition is invalid: %s"
+#
+#310002:
+#  name: SpaceQuotaDefinitionNameTaken
+#  http_code: 400
+#  message: "The space quota definition name is taken: %s"
+#
+#310003:
+#  name: SpaceQuotaMemoryLimitExceeded
+#  http_code: 400
+#  message: "You have exceeded your space's memory limit."
+#
+#310004:
+#  name: SpaceQuotaInstanceMemoryLimitExceeded
+#  http_code: 400
+#  message: "You have exceeded the instance memory limit for your space's quota."
+#
+#310005:
+#  name: SpaceQuotaTotalRoutesExceeded
+#  http_code: 400
+#  message: "You have exceeded the total routes for your space's quota."
+#
+#310006:
+#  name: OrgQuotaTotalRoutesExceeded
+#  http_code: 400
+#  message: "You have exceeded the total routes for your organization's quota."
+#
+#310007:
+#  name: SpaceQuotaDefinitionNotFound
+#  http_code: 404
+#  message: "Space Quota Definition could not be found: %s"
+#
+#320001:
+#  name: DiegoDisabled
+#  http_code: 400
+#  message: Diego has not been enabled.
+#
+#320002:
+#  name: DiegoDockerBuildpackConflict
+#  http_code: 400
+#  message: "You cannot specify a custom buildpack and a docker image at the same time."
+#
+#320003:
+#  name: DockerDisabled
+#  http_code: 400
+#  message: Docker support has not been enabled.
+#
+#320004:
+#  name: StagingBackendInvalid
+#  http_code: 403
+#  message: "The request staging completion endpoint only handles apps desired to stage on the Diego backend."
+#
+#330000:
+#  name: FeatureFlagNotFound
+#  http_code: 404
+#  message: "The feature flag could not be found: %s"
+#
+#330001:
+#  name: FeatureFlagInvalid
+#  http_code: 400
+#  message: "The feature flag is invalid: %s"
+#
+#330002:
+#  name: FeatureDisabled
+#  http_code: 403
+#  message: "Feature Disabled: %s"
+#
+#340001:
+#  name: UserProvidedServiceInstanceNotFound
+#  http_code: 404
+#  message: "The service instance could not be found: %s"
+#
+#350001:
+#  name: ProcessInvalid
+#  http_code: 400
+#  message: "The process is invalid: %s"
